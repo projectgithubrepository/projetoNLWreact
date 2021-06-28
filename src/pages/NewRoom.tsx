@@ -9,11 +9,18 @@ import { database } from '../services/firebase';
 import { useAuth } from '../hooks/useAuth';
 
 import '../styles/auth.scss';
+import { DarkMode } from '../components/DarkMode';
 
 export function NewRoom() {   
     const { user } = useAuth()
     const history = useHistory()
     const [newRoom, setNewRoom] = useState('');
+
+    async function handleDarkMode () {
+        if (document.body.className === '') {
+            document.body.className = 'dark';
+        } else { document.body.className = ''; }
+    }
 
     async function handleCreateRoom(event: FormEvent) {
         event.preventDefault();
@@ -35,6 +42,7 @@ export function NewRoom() {
     return (
         <div id='page-auth'>
             <aside>
+                <DarkMode onClick={handleDarkMode}> Dark Mode</DarkMode>
                 <img src={illustrationImg} alt='Ilustração simbolizando perguntas e respostas'/>
                 <strong>Cria salas de Q&amp;A ao-vivo</strong>
                 <p>Tire as dúvidas da sua audiência em tempo-real</p>

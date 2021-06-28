@@ -11,6 +11,7 @@ import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
 import '../styles/room.scss';
 import { useHistory } from 'react-router-dom';
+import { DarkMode } from '../components/DarkMode';
 
 type RoomParams = {
     id: string;
@@ -24,7 +25,11 @@ export function AdminRoom() {
     
     const { title, questions } = useRoom(roomId) 
 
-    console.log(questions)
+    async function handleDarkMode () {
+        if (document.body.className === '') {
+            document.body.className = 'dark';
+        } else { document.body.className = ''; }
+    }
 
     async function handleEndRoom () {
         await database.ref(`rooms/${roomId}`).update({
@@ -65,6 +70,7 @@ export function AdminRoom() {
             </header>
 
             <main>
+                <DarkMode onClick={handleDarkMode}> Dark Mode</DarkMode>
                 <div className="room-title">
                     <h1>Sala {title}</h1>
                     { questions.length > 0 && <span> {questions.length} pergunta(s)</span> }

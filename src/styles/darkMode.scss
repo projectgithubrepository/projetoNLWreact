@@ -1,0 +1,37 @@
+.darkMode {
+    height: 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    background: black;
+    padding: 0 32px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 0;
+    transition: 0.2s;
+    position: fixed;
+    top: 3px;
+    right: 5px;
+}
+
+.darkMode:active {
+    background:#fff;
+    color: black;
+}
+
+body.dark {
+    background: black;
+    color: white;
+
+    .darkMode {
+        background:#fff;
+        color: black;
+    }
+}
+
+aside.dark {
+    background: black;
+    color: white;
+}

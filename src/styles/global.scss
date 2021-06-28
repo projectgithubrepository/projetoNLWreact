@@ -6,8 +6,13 @@
 
 
 body {
-    background: #f8f8f8;
-    color: #29292e;
+    background: #835afd3b;
+    color: #000055;
+}
+
+body:dark-mode {
+    background:black;
+    color: white;
 }
 
 body, input, button, textarea {

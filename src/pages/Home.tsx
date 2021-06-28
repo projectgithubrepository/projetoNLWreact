@@ -11,11 +11,20 @@ import { useAuth } from '../hooks/useAuth';
 
 import '../styles/auth.scss';
 import { FormEvent, useState } from 'react';
+import { DarkMode } from '../components/DarkMode';
 
 export function Home() {
     const history = useHistory();
     const { user, signInWithGoogle } = useAuth()
     const [roomCode, setRoomCode] = useState('')
+
+    async function handleDarkMode () {
+        if (document.body.className === '') {
+            document.body.className = 'dark';
+        } else { 
+            document.body.className = ''; 
+        }
+    }
 
     async function handleCreateRoom() {
         if (!user) {
@@ -57,6 +66,7 @@ export function Home() {
             </aside>
             <main>
                 <div className='main-content'>
+                    <DarkMode onClick={handleDarkMode}> Dark Mode</DarkMode>
                     <img src={logoImg} alt='Letmeask'/>
                     <button onClick={handleCreateRoom} className='create-room'>
                         <img src={googleIconImg} alt='Logo do Google'></img>

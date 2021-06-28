@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router';
 import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
+import { DarkMode } from '../components/DarkMode';
 import { Question } from '../components/Question';
 import { RoomCode } from '../components/RoomCode';
 import { useAuth } from '../hooks/useAuth';
@@ -20,6 +21,12 @@ export function Room() {
     const roomId = params.id;
     
     const { title, questions } = useRoom(roomId) 
+
+    async function handleDarkMode () {
+        if (document.body.className === '') {
+            document.body.className = 'dark';
+        } else { document.body.className = ''; }
+    }
 
     async function handleSendQuestion(event: FormEvent) {
         event.preventDefault();
@@ -67,6 +74,7 @@ export function Room() {
             </header>
 
             <main>
+                <DarkMode onClick={handleDarkMode}> Dark Mode</DarkMode>
                 <div className="room-title">
                     <h1>Sala {title}</h1>
                     { questions.length > 0 && <span> {questions.length} pergunta(s)</span> }
